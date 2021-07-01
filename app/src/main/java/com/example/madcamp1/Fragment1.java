@@ -2,11 +2,9 @@ package com.example.madcamp1;
 
 import android.Manifest;
 import android.content.ContentUris;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -97,8 +95,7 @@ public class Fragment1 extends Fragment {
                 myContact.setName(cursor.getString(1));
                 Drawable photo = openPhoto(cursor.getLong(2));
                 Resources rsc = getResources();
-                myContact.setImage(photo == null ? rsc.getDrawable(rsc.getIdentifier("who", "drawable", getActivity().getPackageName())) : photo);
-                myContact.setEmail("0");
+                myContact.setImage(photo == null ? rsc.getDrawable(rsc.getIdentifier("unknown", "drawable", getActivity().getPackageName())) : photo);
 
 //                if (myContact.getNumber()number.startsWith("01")) {
                     hasList.add(myContact);
@@ -167,14 +164,5 @@ public class Fragment1 extends Fragment {
             e.printStackTrace();
         }
     }
-
-//    public void InitializeData()
-//    {
-//        dataList = new ArrayList<>();
-//
-//        dataList.add(new contact(R.drawable.mother,"엄마", "010-1111-1111", "mother@gmail.com"));
-//        dataList.add(new contact(R.drawable.father,"아빠", "010-2222-2222", "father@gmail.com"));
-//        dataList.add(new contact(R.drawable.brother,"형", "010-3333-3333", "brother@gmail.com"));
-//    }
 
 }

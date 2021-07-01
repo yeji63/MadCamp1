@@ -1,6 +1,7 @@
 package com.example.madcamp1;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -70,8 +71,8 @@ public class Fragment1 extends Fragment {
 
                 contact contact = new contact();
 
-//                contact.setImage(getActivity().getResources().getIdentifier(contactObject.getString("image"), "drawable", getActivity().getPackageName()));
-                contact.setImage(contactObject.getInt("image"));
+                Resources rsc = getResources();
+                contact.setImage(rsc.getDrawable(rsc.getIdentifier(contactObject.getString("image"), "drawable", getActivity().getPackageName())));
                 contact.setName(contactObject.getString("name"));
                 contact.setNumber(contactObject.getString("number"));
                 contact.setEmail(contactObject.getString("email"));

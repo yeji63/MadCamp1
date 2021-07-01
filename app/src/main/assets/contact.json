@@ -1,21 +1,39 @@
 { "contact" : [
   {
-    "image" : 2131165313,
+    "image" : "mother",
     "name" : "엄마",
     "number" : "010-1111-1111",
     "email" : "mother@gmail.com"
   },
   {
-    "image" : 2131165294,
+    "image" : "father",
     "name" : "아빠",
     "number" : "010-2222-2222",
     "email" : "father@gmail.com"
   },
   {
-    "image" : 2131165279,
-    "name" : "형",
+    "image" : "brother",
+    "name" : "큰형",
     "number" : "010-3333-3333",
-    "email" : "brother@gmail.com"
+    "email" : "brother1@gmail.com"
+  },
+  {
+    "image" : "brother",
+    "name" : "작은형",
+    "number" : "010-4444-4444",
+    "email" : "brother2@gmail.com"
+  },
+  {
+    "image" : "sister",
+    "name" : "큰누나",
+    "number" : "010-5555-5555",
+    "email" : "sister1@gmail.com"
+  },
+  {
+    "image" : "sister",
+    "name" : "작은누나",
+    "number" : "010-6666-6666",
+    "email" : "sister2@gmail.com"
   }
 ]
 }

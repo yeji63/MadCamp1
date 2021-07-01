@@ -1,7 +1,10 @@
 package com.example.madcamp1;
 
+import android.graphics.drawable.Drawable;
+
 public class contact {
-    private int image;
+//    private int image;
+    private Drawable image;
     private String name;
     private String number;
     private String email;
@@ -14,7 +17,8 @@ public class contact {
 //        this.email = email;
 //    }
 
-    public int getImage() { return image; }
+//    public int getImage() { return image; }
+    public Drawable getImage() { return image; }
 
     public String getName() {
         return name;
@@ -28,7 +32,7 @@ public class contact {
         return email;
     }
 
-    public void setImage(int image) { this.image = image; }
+    public void setImage(Drawable image) { this.image = image; }
 
     public void setName(String name) {
         this.name = name;

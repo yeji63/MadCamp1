@@ -1,5 +1,6 @@
 package com.example.madcamp1;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,8 @@ public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(ViewHolder viewHolder, int position)
     {
         //ViewHolder가 관리하는 View에 position에 해당하는 데이터 바인딩
-        viewHolder.imageView.setImageResource(myDataList.get(position).getImage());
+        viewHolder.imageView.setImageDrawable(myDataList.get(position).getImage());
+//        viewHolder.imageView.setImageResource(myDataList.get(position).getImage());
         viewHolder.name.setText(myDataList.get(position).getName());
         viewHolder.number.setText(myDataList.get(position).getNumber());
         viewHolder.email.setText(myDataList.get(position).getEmail());

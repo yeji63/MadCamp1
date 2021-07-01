@@ -1,10 +1,15 @@
 package com.example.madcamp1;
 
 import android.Manifest;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -46,7 +51,17 @@ public class Fragment1 extends Fragment {
         return view;
     }
 
-
+    private Drawable openPhoto(long contactId) {
+        Uri contactUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI,
+                contactId);
+        InputStream input = ContactsContract.Contacts
+                .openContactPhotoInputStream(getContext().getContentResolver(), contactUri);
+        if (input != null) {
+            Drawable d = new BitmapDrawable(getResources(), BitmapFactory.decodeStream(input));
+            return d;
+        }
+        return null;
+    }
 
     public ArrayList<contact> getContactList() {
 
@@ -77,13 +92,12 @@ public class Fragment1 extends Fragment {
 
         if (cursor.moveToFirst()) {
             do {
-                long photo_id = cursor.getLong(2);
-//                long person = cursor.getLong(3);
-
                 contact myContact = new contact();
                 myContact.setNumber(cursor.getString(0));
                 myContact.setName(cursor.getString(1));
-                myContact.setImage(null);
+                Drawable photo = openPhoto(cursor.getLong(2));
+                Resources rsc = getResources();
+                myContact.setImage(photo == null ? rsc.getDrawable(rsc.getIdentifier("who", "drawable", getActivity().getPackageName())) : photo);
                 myContact.setEmail("0");
 
 //                if (myContact.getNumber()number.startsWith("01")) {

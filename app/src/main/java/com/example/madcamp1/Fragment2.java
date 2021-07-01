@@ -1,4 +1,5 @@
 package com.example.madcamp1;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.io.File;
@@ -27,16 +29,14 @@ public class Fragment2 extends Fragment {
         GridView gridView = (GridView) view.findViewById(R.id.gridview);
         gridView.setAdapter(new ImageAdapter(getContext()));
 
-
-//        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-//                "MyCameraApp");
-//        if (! mediaStorageDir.exists()){
-//            if (! mediaStorageDir.mkdirs()){
-//                Log.d("MyCameraApp", "failed to create directory");
-//            }
-//        }
-
-        //basePath = mediaStorageDir.getPath();
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getContext(), FullImageActivity.class);
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

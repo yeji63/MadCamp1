@@ -1,0 +1,21 @@
+{ "Contact" : [
+  {
+    "image" : 700084,
+    "name" : "엄마",
+    "number" : "010-1111-1111",
+    "email" : "mother@gmail.com"
+  },
+  {
+    "image" : 700115,
+    "name" : "아빠",
+    "number" : "010-2222-2222",
+    "email" : "father@gmail.com"
+  },
+  {
+    "image" : 700036,
+    "name" : "형",
+    "number" : "010-3333-3333",
+    "email" : "brother@gmail.com"
+  }
+]
+}

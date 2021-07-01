@@ -36,9 +36,9 @@ public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
     {
         //ViewHolder가 관리하는 View에 position에 해당하는 데이터 바인딩
         viewHolder.imageView.setImageResource(myDataList.get(position).getImage());
-        viewHolder.title.setText(myDataList.get(position).getName());
-        viewHolder.grade.setText(myDataList.get(position).getNumber());
-
+        viewHolder.name.setText(myDataList.get(position).getName());
+        viewHolder.number.setText(myDataList.get(position).getNumber());
+        viewHolder.email.setText(myDataList.get(position).getEmail());
     }
 
     @Override

@@ -8,15 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ViewHolder extends RecyclerView.ViewHolder{
     ImageView imageView;
-    TextView title;
-    TextView grade;
+    TextView name;
+    TextView number;
+    TextView email;
 
     ViewHolder(View itemView)
     {
         super(itemView);
 
         imageView = itemView.findViewById(R.id.imageView2);
-        title = itemView.findViewById(R.id.title);
-        grade = itemView.findViewById(R.id.grade);
+        name = itemView.findViewById(R.id.name);
+        number = itemView.findViewById(R.id.number);
+        email = itemView.findViewById(R.id.email);
     }
 }

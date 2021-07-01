@@ -6,13 +6,13 @@ public class contact {
     private String number;
     private String email;
 
-    public contact(int image, String name, String number, String email)
-    {
-        this.image = image;
-        this.name = name;
-        this.number = number;
-        this.email = email;
-    }
+//    public contact(int image, String name, String number, String email)
+//    {
+//        this.image = image;
+//        this.name = name;
+//        this.number = number;
+//        this.email = email;
+//    }
 
     public int getImage() { return image; }
 

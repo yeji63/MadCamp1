@@ -2,6 +2,7 @@ package com.example.madcamp1;
 
 import android.Manifest;
 import android.content.ContentUris;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -20,8 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +44,7 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle   savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_1, container, false);
 
+        setHasOptionsMenu(true);
 //        jsonParsing(getJsonString());
         dataList = getContactList();
 //        InitializeData();
@@ -47,6 +53,24 @@ public class Fragment1 extends Fragment {
         recyclerView.setLayoutManager(manager); // LayoutManager 등록
         recyclerView.setAdapter(new MyAdapter(dataList));  // Adapter 등록
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.contact_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_contact:
+                Intent intent = new Intent(getActivity().getApplicationContext(), AddContact.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private Drawable openPhoto(long contactId) {

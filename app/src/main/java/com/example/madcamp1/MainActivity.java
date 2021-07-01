@@ -1,7 +1,9 @@
 package com.example.madcamp1;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -52,5 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 // do nothing
             }
         }) ;
+
+        Toolbar tb = findViewById(R.id.toolbar);
+        tb.setTitleTextColor(0xffffffff);
+        setSupportActionBar(tb);
+        ActionBar ab = getSupportActionBar();
+
     }
 }

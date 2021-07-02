@@ -1,6 +1,7 @@
 package com.example.madcamp1;
 
 import android.Manifest;
+import android.app.FragmentTransaction;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 
 public class Fragment1 extends Fragment {
@@ -99,7 +101,7 @@ public class Fragment1 extends Fragment {
         String[] projection = new String[] {
                 ContactsContract.CommonDataKinds.Phone.NUMBER,
                 ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+                ContactsContract.CommonDataKinds.Phone.CONTACT_ID
         };
 
         String[] selectionArgs =null;
@@ -107,6 +109,18 @@ public class Fragment1 extends Fragment {
 
         Cursor cursor =  getActivity().getContentResolver().query(uri, projection, null,
                 selectionArgs, sortOrder);
+        Cursor cursor2 = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, null, null, null, null);
+
+        HashMap nameEmailMap = new HashMap<>();
+        while (cursor2.moveToNext()) {
+
+            String name = cursor2.getString(cursor2.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            String email = cursor2.getString(cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
+
+            // Enter Into Hash Map
+            nameEmailMap.put(name, email);
+            Log.d("<<CONTACTS>>", "name=" + name + ", email=" + email);
+        }
 
 
         LinkedHashSet<contact> hasList = new LinkedHashSet<>();
@@ -116,25 +130,18 @@ public class Fragment1 extends Fragment {
             do {
                 contact myContact = new contact();
                 myContact.setNumber(cursor.getString(0));
-                myContact.setName(cursor.getString(1));
+                String name = cursor.getString(1);
+                myContact.setName(name);
+                myContact.setEmail((String) nameEmailMap.get(name));
                 Drawable photo = openPhoto(cursor.getLong(2));
                 Resources rsc = getResources();
                 myContact.setImage(photo == null ? rsc.getDrawable(rsc.getIdentifier("unknown", "drawable", getActivity().getPackageName())) : photo);
-
-//                if (myContact.getNumber()number.startsWith("01")) {
-                    hasList.add(myContact);
-                    //contactsList.add(myContact);
-                    Log.d("<<CONTACTS>>", "name=" + myContact.getName() + ", phone=" + myContact.getNumber());
-//                }
-
+                hasList.add(myContact);
+                Log.d("<<CONTACTS>>", "name=" + myContact.getName() + ", phone=" + myContact.getNumber() + ", email=" + myContact.getEmail());
             } while (cursor.moveToNext());
         }
 
         contactsList = new ArrayList<contact>(hasList);
-        for (int i = 0; i < contactsList.size(); i++) {
-            contactsList.get(i).setEmail(null);
-        }
-
         if (cursor != null) {
             cursor.close();
         }
@@ -142,51 +149,51 @@ public class Fragment1 extends Fragment {
         return contactsList;
     }
 
-    private String getJsonString()
-    {
-        String json = "";
-
-        try {
-            InputStream is = getContext().getAssets().open("contact.json");
-            int fileSize = is.available();
-
-            byte[] buffer = new byte[fileSize];
-            is.read(buffer);
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-        }
-        catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
-        return json;
-    }
-
-    private void jsonParsing(String json)
-    {
-        try{
-            JSONObject jsonObject = new JSONObject(json);
-            dataList = new ArrayList<>();
-            JSONArray contactArray = jsonObject.getJSONArray("contact");
-
-
-            for(int i=0; i<contactArray.length(); i++)
-            {
-                JSONObject contactObject = contactArray.getJSONObject(i);
-
-                contact contact = new contact();
-
-                Resources rsc = getResources();
-                contact.setImage(rsc.getDrawable(rsc.getIdentifier(contactObject.getString("image"), "drawable", getActivity().getPackageName())));
-                contact.setName(contactObject.getString("name"));
-                contact.setNumber(contactObject.getString("number"));
-                contact.setEmail(contactObject.getString("email"));
-                dataList.add(contact);
-            }
-        }catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+//    private String getJsonString()
+//    {
+//        String json = "";
+//
+//        try {
+//            InputStream is = getContext().getAssets().open("contact.json");
+//            int fileSize = is.available();
+//
+//            byte[] buffer = new byte[fileSize];
+//            is.read(buffer);
+//            is.close();
+//
+//            json = new String(buffer, "UTF-8");
+//        }
+//        catch (IOException ex)
+//        {
+//            ex.printStackTrace();
+//        }
+//        return json;
+//    }
+//
+//    private void jsonParsing(String json)
+//    {
+//        try{
+//            JSONObject jsonObject = new JSONObject(json);
+//            dataList = new ArrayList<>();
+//            JSONArray contactArray = jsonObject.getJSONArray("contact");
+//
+//
+//            for(int i=0; i<contactArray.length(); i++)
+//            {
+//                JSONObject contactObject = contactArray.getJSONObject(i);
+//
+//                contact contact = new contact();
+//
+//                Resources rsc = getResources();
+//                contact.setImage(rsc.getDrawable(rsc.getIdentifier(contactObject.getString("image"), "drawable", getActivity().getPackageName())));
+//                contact.setName(contactObject.getString("name"));
+//                contact.setNumber(contactObject.getString("number"));
+//                contact.setEmail(contactObject.getString("email"));
+//                dataList.add(contact);
+//            }
+//        }catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

@@ -1,15 +1,13 @@
 package com.example.madcamp1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.FragmentTransaction;
 import android.content.ContentProviderOperation;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -18,8 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class AddContact extends AppCompatActivity {
@@ -27,6 +24,7 @@ public class AddContact extends AppCompatActivity {
 
     private final int GET_GALLERY_IMAGE = 200;
     private ImageView imageview;
+    public int imageSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,50 +49,36 @@ public class AddContact extends AppCompatActivity {
         if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri selectedImageUri = data.getData();
             imageview.setImageURI(selectedImageUri);
-
-        }
-    }
-
-    public void writeDisplayPhoto(long rawContactId, byte[] photo) {
-        Uri rawContactPhotoUri = Uri.withAppendedPath(
-                ContentUris.withAppendedId(ContactsContract.RawContacts.CONTENT_URI, rawContactId),
-                ContactsContract.RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
-        try {
-            AssetFileDescriptor fd =
-                    getContentResolver().openAssetFileDescriptor(rawContactPhotoUri, "rw");
-            OutputStream os = fd.createOutputStream();
-            os.write(photo);
-            os.close();
-            fd.close();
-        } catch (IOException e) {
-            // Handle error cases.
+            imageSelected = 1;
         }
     }
 
     public void onSaveButtonClicked(View v) {
-//        Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
-//        intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
         ImageView newPhoto = findViewById(R.id.newPhoto);
         EditText newName = findViewById(R.id.newName);
         EditText newNumber = findViewById(R.id.newNumber);
         EditText newEmail = findViewById(R.id.newEmail);
-        Bitmap Thumbnail = Bitmap.createBitmap(newPhoto.getWidth(), newPhoto.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(Thumbnail);
-        newPhoto.draw(canvas);
+        Bitmap Thumbnail = ((BitmapDrawable) newPhoto.getDrawable()).getBitmap();
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] newThumbnail = baos.toByteArray();
         String DisplayName = newName.getText().toString();
         String MobileNumber = newNumber.getText().toString();
         String emailID = newEmail.getText().toString();
 
         if (DisplayName.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please enter your name.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please enter your name!", Toast.LENGTH_SHORT).show();
             return;
         }
         else if (MobileNumber.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please enter your phone number.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please enter your phone number!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         ArrayList< ContentProviderOperation > ops = new ArrayList < ContentProviderOperation > ();
+
+
 
         ops.add(ContentProviderOperation.newInsert(
                 ContactsContract.RawContacts.CONTENT_URI)
@@ -102,13 +86,15 @@ public class AddContact extends AppCompatActivity {
                 .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null)
                 .build());
 
-//        //------------------------------------------------------ Photo
-//        ContentValues values = new ContentValues();
-//        values.put(ContactsContract.RawContacts.ACCOUNT_TYPE, (byte[]) null);
-//        values.put(ContactsContract.RawContacts.ACCOUNT_NAME, accountName);
-//        Uri rawContactUri = getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI, values);
-//        long rawContactId = ContentUris.parseId(rawContactUri);
-//        writeDisplayPhoto(rawContactId, photo);
+        //------------------------------------------------------ Photo
+        if (imageSelected == 1) {
+            ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                    .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+                    .withValue(ContactsContract.Data.MIMETYPE,
+                            ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE)
+                    .withValue(ContactsContract.CommonDataKinds.Photo.PHOTO, newThumbnail)
+                    .build());
+        }
 
         //------------------------------------------------------ Names
         if (DisplayName != null) {
@@ -154,6 +140,7 @@ public class AddContact extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Exception: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+
         finish();
     }
 

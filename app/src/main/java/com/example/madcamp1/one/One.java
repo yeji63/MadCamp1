@@ -1,13 +1,14 @@
-package com.example.madcamp1;
+package com.example.madcamp1.one;
 
 import android.graphics.Bitmap;
 
-public class PuzzleBlock {
+public class One {
+
     private Bitmap image;
     private int tag;
     private boolean empty;
 
-    PuzzleBlock(Bitmap image, int tag, boolean empty) {
+    One(Bitmap image, int tag, boolean empty) {
         this.image = image;
         this.tag = tag;
         this.empty = empty;
@@ -36,5 +37,4 @@ public class PuzzleBlock {
     public boolean isEmpty() {
         return empty;
     }
-
 }

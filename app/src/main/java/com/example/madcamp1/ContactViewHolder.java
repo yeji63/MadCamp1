@@ -6,13 +6,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ViewHolder extends RecyclerView.ViewHolder{
+public class ContactViewHolder extends RecyclerView.ViewHolder{
     ImageView imageView;
     TextView name;
     TextView number;
     TextView email;
 
-    ViewHolder(View itemView)
+    ContactViewHolder(View itemView)
     {
         super(itemView);
 

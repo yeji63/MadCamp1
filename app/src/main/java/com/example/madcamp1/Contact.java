@@ -2,7 +2,7 @@ package com.example.madcamp1;
 
 import android.graphics.drawable.Drawable;
 
-public class contact {
+public class Contact {
 //    private int image;
     private Drawable image;
     private String name;

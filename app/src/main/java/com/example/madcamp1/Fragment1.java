@@ -1,7 +1,6 @@
 package com.example.madcamp1;
 
 import android.Manifest;
-import android.app.FragmentTransaction;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,20 +26,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 
 public class Fragment1 extends Fragment {
-    public ArrayList<contact> dataList;
+    public ArrayList<Contact> dataList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle   savedInstanceState) {
@@ -53,7 +46,7 @@ public class Fragment1 extends Fragment {
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(manager); // LayoutManager 등록
-        recyclerView.setAdapter(new MyAdapter(dataList));  // Adapter 등록
+        recyclerView.setAdapter(new ContactAdapter(dataList));  // Adapter 등록
         return view;
     }
 
@@ -67,7 +60,7 @@ public class Fragment1 extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_contact:
-                Intent intent = new Intent(getActivity().getApplicationContext(), AddContact.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), ContactAddContact.class);
                 startActivity(intent);
                 return true;
             default:
@@ -87,7 +80,7 @@ public class Fragment1 extends Fragment {
         return null;
     }
 
-    public ArrayList<contact> getContactList() {
+    public ArrayList<Contact> getContactList() {
 
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
@@ -123,12 +116,12 @@ public class Fragment1 extends Fragment {
         }
 
 
-        LinkedHashSet<contact> hasList = new LinkedHashSet<>();
-        ArrayList<contact> contactsList;
+        LinkedHashSet<Contact> hasList = new LinkedHashSet<>();
+        ArrayList<Contact> contactsList;
 
         if (cursor.moveToFirst()) {
             do {
-                contact myContact = new contact();
+                Contact myContact = new Contact();
                 myContact.setNumber(cursor.getString(0));
                 String name = cursor.getString(1);
                 myContact.setName(name);
@@ -141,7 +134,7 @@ public class Fragment1 extends Fragment {
             } while (cursor.moveToNext());
         }
 
-        contactsList = new ArrayList<contact>(hasList);
+        contactsList = new ArrayList<Contact>(hasList);
         if (cursor != null) {
             cursor.close();
         }

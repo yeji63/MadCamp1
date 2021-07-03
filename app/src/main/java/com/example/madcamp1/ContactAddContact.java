@@ -2,8 +2,9 @@ package com.example.madcamp1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.app.FragmentTransaction;
 import android.content.ContentProviderOperation;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-public class AddContact extends AppCompatActivity {
+public class ContactAddContact extends AppCompatActivity {
 
 
     private final int GET_GALLERY_IMAGE = 200;

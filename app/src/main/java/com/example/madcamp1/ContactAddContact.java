@@ -136,7 +136,7 @@ public class ContactAddContact extends AppCompatActivity {
         // Asking the Contact provider to create a new contact
         try {
             getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
-            Toast.makeText(getApplicationContext(), "Successfully saved.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Successfully saved.\nSwipe down to refresh the contact.", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Exception: " + e.getMessage(), Toast.LENGTH_SHORT).show();

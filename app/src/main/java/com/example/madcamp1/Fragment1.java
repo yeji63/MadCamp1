@@ -15,8 +15,10 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -26,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -34,10 +37,23 @@ import java.util.LinkedHashSet;
 
 public class Fragment1 extends Fragment {
     public ArrayList<Contact> dataList;
+    public SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle   savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_1, container, false);
+        Fragment fragment1 = this;
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+        SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swiperefreshlayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ft.detach(fragment1).attach(fragment1).commit();
+                Toast.makeText(getContext(), "Successfully loaded.", Toast.LENGTH_SHORT).show();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         setHasOptionsMenu(true);
 //        jsonParsing(getJsonString());

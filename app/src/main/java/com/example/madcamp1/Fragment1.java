@@ -76,7 +76,7 @@ public class Fragment1 extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_contact:
-                Intent intent = new Intent(getActivity().getApplicationContext(), ContactAddContact.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), AddContact.class);
                 startActivity(intent);
                 return true;
             default:

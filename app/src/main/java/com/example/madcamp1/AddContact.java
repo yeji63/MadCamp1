@@ -20,7 +20,7 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-public class ContactAddContact extends AppCompatActivity {
+public class AddContact extends AppCompatActivity {
 
 
     private final int GET_GALLERY_IMAGE = 200;

@@ -19,21 +19,6 @@ public class GalleryMainAdapter extends ArrayAdapter<GalleryMaiItem> {
         mItemList=a_itemList;
     }
 
-//
-//    @Override
-//    public int getCount() {
-//        return mThumbIds.length;
-//    }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        return mThumbIds[position];
-//    }
-//
-//    @Override
-//    public long getItemId(int position) {
-//        return 0;
-//    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

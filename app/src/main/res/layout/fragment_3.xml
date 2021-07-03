@@ -11,15 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <EditText
+            android:id="@+id/et_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:hint="Enter size"
+            android:ems="5"
+            app:layout_constraintBottom_toTopOf="@+id/gamebtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
         <Button
             android:id="@+id/gamebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="Enter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.872" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

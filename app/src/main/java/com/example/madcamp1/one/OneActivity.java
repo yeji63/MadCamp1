@@ -1,6 +1,7 @@
 package com.example.madcamp1.one;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ public class OneActivity extends AppCompatActivity {
     CheckAvailable checkAvailable;
     Vector<One> mOne;
 
-    private static final int N = 5;
+    private static int N = 5;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -44,6 +45,11 @@ public class OneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_one);
+
+        // get intent data
+        Intent i = getIntent();
+        // Selected image id
+        N = i.getExtras().getInt("n_num");
 
         // span과 이미지 갯수만 변경되면 모든 M x N 적용가능
         GridLayoutManager layoutManager = new GridLayoutManager(this, N);

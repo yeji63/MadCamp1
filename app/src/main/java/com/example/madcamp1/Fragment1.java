@@ -75,9 +75,13 @@ public class Fragment1 extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.search_contact:
+                Intent intent_search = new Intent(getActivity().getApplicationContext(), ContactListViewAdapter.class);
+                startActivity(intent_search);
+                return true;
             case R.id.add_contact:
-                Intent intent = new Intent(getActivity().getApplicationContext(), AddContact.class);
-                startActivity(intent);
+                Intent intent_add = new Intent(getActivity().getApplicationContext(), AddContact.class);
+                startActivity(intent_add);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

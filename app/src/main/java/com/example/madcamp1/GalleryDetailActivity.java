@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-public class DetailActivity extends AppCompatActivity {
+public class GalleryDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_gallerydetail);
 
         GridView gridView_d = (GridView) findViewById(R.id.gridview_detail);
 
@@ -42,13 +42,13 @@ public class DetailActivity extends AppCompatActivity {
                 R.drawable.dandelion1, R.drawable.dandelion2, R.drawable.dandelion3, R.drawable.dandelion4, R.drawable.dandelion5
         };
         Integer[] rose={
-                R.drawable.rose1, R.drawable.rose2, R.drawable.rose3, R.drawable.rose4, R.drawable.rose5
+                R.drawable.rose1, R.drawable.rose2, R.drawable.rose3, R.drawable.rose4, R.drawable.rose5, R.drawable.rose6
         };
         Integer[] sunflower={
                 R.drawable.sunflower1, R.drawable.sunflower2, R.drawable.sunflower3, R.drawable.sunflower4, R.drawable.sunflower5
         };
         Integer[] tulip={
-                R.drawable.tulip1, R.drawable.tulip2, R.drawable.tulip3, R.drawable.tulip4, R.drawable.tulip5
+                R.drawable.tulip1, R.drawable.tulip2, R.drawable.tulip3, R.drawable.tulip4, R.drawable.tulip5, R.drawable.tulip6, R.drawable.tulip7
         };
 
 
@@ -56,22 +56,22 @@ public class DetailActivity extends AppCompatActivity {
         int album = i.getExtras().getInt("album");
         switch (album){
             case 0: //all
-                gridView_d.setAdapter(new DetailAdapter(this, all));
+                gridView_d.setAdapter(new GalleryDetailAdapter(this, all));
                 break;
             case 1: //daisy
-                gridView_d.setAdapter(new DetailAdapter(this, daisy));
+                gridView_d.setAdapter(new GalleryDetailAdapter(this, daisy));
                 break;
             case 2: //dandelion
-                gridView_d.setAdapter(new DetailAdapter(this, dandelion));
+                gridView_d.setAdapter(new GalleryDetailAdapter(this, dandelion));
                 break;
             case 3: //rose
-                gridView_d.setAdapter(new DetailAdapter(this, rose));
+                gridView_d.setAdapter(new GalleryDetailAdapter(this, rose));
                 break;
             case 4: //sunflower
-                gridView_d.setAdapter(new DetailAdapter(this, sunflower));
+                gridView_d.setAdapter(new GalleryDetailAdapter(this, sunflower));
                 break;
             case 5: //tulip
-                gridView_d.setAdapter(new DetailAdapter(this, tulip));
+                gridView_d.setAdapter(new GalleryDetailAdapter(this, tulip));
                 break;
 
         }

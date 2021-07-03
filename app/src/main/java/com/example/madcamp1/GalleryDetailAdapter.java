@@ -6,15 +6,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-public class DetailAdapter extends BaseAdapter {
+public class GalleryDetailAdapter extends BaseAdapter {
+
     private Context imgContext;
-    private Integer[] imglist;
+    public static Integer[] imglist;
 
 //    public Integer[] imgarray={
 //            R.drawable.daisy1, R.drawable.daisy2, R.drawable.daisy3, R.drawable.daisy4, R.drawable.daisy5
 //    };
 
-    public DetailAdapter(Context c, Integer[] list){
+    public GalleryDetailAdapter(Context c, Integer[] list){
         imgContext=c;
         imglist=list;
     }

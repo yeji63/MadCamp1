@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-public class GalleryImageAdapter extends BaseAdapter {
+public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
     public Integer[] mThumbIds={
@@ -18,7 +18,7 @@ public class GalleryImageAdapter extends BaseAdapter {
             R.drawable.sunflower1, R.drawable.sunflower2, R.drawable.sunflower3, R.drawable.sunflower4, R.drawable.sunflower5
     };
 
-    public GalleryImageAdapter(Context c){
+    public ImageAdapter(Context c){
         mContext=c;
     }
 

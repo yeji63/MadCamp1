@@ -1,3 +1,5 @@
+package com.example.madcamp1;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -6,21 +8,40 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.madcamp1.ContactListViewAdapter;
 import com.example.madcamp1.MainActivity;
 import com.example.madcamp1.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.example.madcamp1.Fragment1.contactList;
+import static com.example.madcamp1.Fragment1.dataList;
 
 public class SearchContact extends AppCompatActivity {
 
-    private ContactListViewAdapter adapter;
+    private ContactFilterAdapter adapter;
+
+    @BindView(R.id.recyclerView2)
+    RecyclerView recyclerView2;
+    @BindView(R.id.editTextTextPersonName)
+    EditText editsearch;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_search);
-        init();
+        setContentView(R.layout.activity_search_contact);
+        ButterKnife.bind(this, this);
+        adapter = new ContactFilterAdapter(dataList, contactList);
+        recyclerView2.setAdapter(adapter);
 
         //검색창
         editsearch.addTextChangedListener(new TextWatcher() {
@@ -48,16 +69,4 @@ public class SearchContact extends AppCompatActivity {
         });
     }
 
-    public void init() {
-        ContactList ContactList = new ContactList(this);
-        adapter = new ContactListViewAdapter(this, ContactList);
-        listView.setAdapter(adapter);
-    }
-
-    @Bind(R.id.listview)
-    ListView listView;
-    @Bind(R.id.editsearch)
-    EditText editsearch;
-    @Bind(R.id.Layout_Internet)
-    RelativeLayout internetLayout;
 }

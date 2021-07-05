@@ -2,6 +2,8 @@ package com.example.madcamp1;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
+
 public class Contact {
         //    private int image;
         private Drawable image;

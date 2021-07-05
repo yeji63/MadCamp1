@@ -34,9 +34,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 public class Fragment1 extends Fragment {
-    public ArrayList<Contact> dataList;
+    static ArrayList<Contact> dataList;
+    static List<Contact> contactList;
     public SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -58,6 +60,7 @@ public class Fragment1 extends Fragment {
         setHasOptionsMenu(true);
 //        jsonParsing(getJsonString());
         dataList = getContactList();
+        contactList = (List<Contact>) dataList.clone();
 //        InitializeData();
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
@@ -76,7 +79,7 @@ public class Fragment1 extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search_contact:
-                Intent intent_search = new Intent(getActivity().getApplicationContext(), ContactListViewAdapter.class);
+                Intent intent_search = new Intent(getActivity().getApplicationContext(), SearchContact.class);
                 startActivity(intent_search);
                 return true;
             case R.id.add_contact:
@@ -162,7 +165,11 @@ public class Fragment1 extends Fragment {
         return contactsList;
     }
 
-//    private String getJsonString()
+    public ArrayList<Contact> getDataList() {
+        return dataList;
+    }
+
+    //    private String getJsonString()
 //    {
 //        String json = "";
 //

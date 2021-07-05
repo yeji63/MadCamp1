@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -20,7 +22,7 @@ public class ContactListViewAdapter extends BaseAdapter {
     Context context;
     LayoutInflater inflater;
     private List<Contact> contactList = null;
-    public ArrayList<Contact> dataList;
+    private ArrayList<Contact> dataList;
 
     public void contactListViewAdapter(Context context, List<Contact> contactList) {
         this.context = context;
@@ -63,15 +65,15 @@ public class ContactListViewAdapter extends BaseAdapter {
         }
         // Set the results into TextViews
         holder.name.setText(contact.getName());
-        Glide.with(context).load(contact.icon).into(holder.iv_icon);
+        Glide.with(context).load(contact.getImage()).into(holder.imageView);
 
         // Listen for ListView Item Click
         view.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(context, BrewingActivity.class);
-                context.startActivity(intent);
+//                Intent intent = new Intent(context, BrewingActivity.class);
+//                context.startActivity(intent);
             }
         });
 

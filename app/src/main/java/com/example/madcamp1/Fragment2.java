@@ -47,6 +47,7 @@ public class Fragment2 extends Fragment {
 //                //Log.d(TAG, "갤러리 포지션 값 "+position);
 //                startActivity(i);
                 Intent i = new Intent(getContext(), GalleryDetailActivity.class);
+                i.putExtra("frag", 1);
                 i.putExtra("album", position);
                 startActivity(i);
 

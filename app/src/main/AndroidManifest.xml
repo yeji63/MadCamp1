@@ -24,6 +24,7 @@
             android:theme="@style/Theme.MadCamp1.NoActionBar" />
         <activity android:name=".AddContact" />
         <activity android:name=".SearchContact"/>
+        <activity android:name=".ContactDetailActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

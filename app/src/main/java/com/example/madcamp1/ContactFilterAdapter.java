@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ContactFilterAdapter extends RecyclerView.Adapter<ContactViewHolder> {
+public class ContactFilterAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
     private ArrayList<Contact> myDataList;
     private List<Contact> contactList;
@@ -24,20 +24,20 @@ public class ContactFilterAdapter extends RecyclerView.Adapter<ContactViewHolder
     }
 
     @Override
-    public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public ContactAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         //전개자(Inflater)를 통해 얻은 참조 객체를 통해 뷰홀더 객체 생성
         View view = inflater.inflate(R.layout.contact_recyclerview, parent, false);
-        ContactViewHolder viewHolder = new ContactViewHolder(view);
+        ContactAdapter.ViewHolder viewHolder= new ContactAdapter.ViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ContactViewHolder viewHolder, int position)
+    public void onBindViewHolder(ContactAdapter.ViewHolder viewHolder, int position)
     {
         //ViewHolder가 관리하는 View에 position에 해당하는 데이터 바인딩
         viewHolder.imageView.setImageDrawable(contactList.get(position).getImage());

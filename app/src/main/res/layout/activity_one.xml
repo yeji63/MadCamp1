@@ -48,7 +48,7 @@
             android:layout_width="291dp"
             android:layout_height="175dp"
             android:layout_margin="16dp"
-            android:src="@drawable/img1to9"
+            android:src="@drawable/ggg"
             app:layout_constraintBottom_toTopOf="@+id/oneLayout"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,13 +58,16 @@
         <Button
             android:id="@+id/restartBtn"
             android:layout_width="0dp"
-            android:layout_height="96dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="0dp"
             android:text="다시하기"
-            android:textColor="@android:color/black"
-            android:textSize="32sp"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
             android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

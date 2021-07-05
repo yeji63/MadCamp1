@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 public class GalleryDetailActivity extends AppCompatActivity {
+    int frag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +19,6 @@ public class GalleryDetailActivity extends AppCompatActivity {
 
         GridView gridView_d = (GridView) findViewById(R.id.gridview_detail);
 
-        // get intent data
-//        Intent i = getIntent();//get position으로 해당 포지션 배열로 그리드뷰 세팅하기
-//        Selected image id
-//        int position = i.getExtras().getInt("id");
-//        ImageAdapter imageAdapter = new ImageAdapter(this);
-//
-//        ImageView imageView = (ImageView) findViewById(R.id.fullimg);
-//        imageView.setImageResource(imageAdapter.mThumbIds[position]);
 
         //album 값으로 배열 설정하기
         Integer[] all={
@@ -54,6 +47,7 @@ public class GalleryDetailActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         int album = i.getExtras().getInt("album");
+        frag = i.getExtras().getInt("frag");
         switch (album){
             case 0: //all
                 gridView_d.setAdapter(new GalleryDetailAdapter(this, all));
@@ -80,10 +74,18 @@ public class GalleryDetailActivity extends AppCompatActivity {
         gridView_d.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
-                i.putExtra("id", position);
-                //Log.d(TAG, "갤러리 포지션 값 "+position);
-                startActivity(i);
+                if(frag==1){
+                    Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
+                    i.putExtra("id", position);
+                    //Log.d(TAG, "갤러리 포지션 값 "+position);
+                    startActivity(i);
+                }
+                else{
+                    Intent i = new Intent();
+                    i.putExtra("selectimg", all[position]);
+                    setResult(2, i);
+                    finish();
+                }
             }
         });
 

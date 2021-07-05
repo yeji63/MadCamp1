@@ -33,7 +33,8 @@ public class OneActivity extends AppCompatActivity {
     CheckAvailable checkAvailable;
     Vector<One> mOne;
 
-    private static int N = 5;
+    private static int N;
+    int imgres;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -50,6 +51,8 @@ public class OneActivity extends AppCompatActivity {
         Intent i = getIntent();
         // Selected image id
         N = i.getExtras().getInt("n_num");
+        //img 인수로 받기
+        imgres = i.getExtras().getInt("imgres");
 
 
         // span과 이미지 갯수만 변경되면 모든 M x N 적용가능
@@ -203,8 +206,8 @@ public class OneActivity extends AppCompatActivity {
         public void setWH(int width, int height) {
             this.width = width;
             this.height = height;
-            binding.correctImageView.setImageResource(R.drawable.ggg);
-            img = BitmapFactory.decodeResource(getResources(), R.drawable.ggg);
+            binding.correctImageView.setImageResource(imgres);
+            img = BitmapFactory.decodeResource(getResources(), imgres);
             img = Bitmap.createScaledBitmap(img, width, height, true);
             imgW = img.getWidth() / N;
             imgH = img.getHeight() / N;
@@ -212,7 +215,8 @@ public class OneActivity extends AppCompatActivity {
             for (int i = 0; i < Math.pow(N, 2); i++) {
                 bitNXN[i] = Bitmap.createBitmap(img, (i % N) * imgW, (i / N) * imgH, imgW, imgH);
             }
-            bitNXN[N*N-1] = Bitmap.createBitmap(img, 0, 0, 1, 1);
+            //bitNXN[N*N-1] = Bitmap.createBitmap(img, 0, 0, 1, 1);
+            bitNXN[N*N-1]=BitmapFactory.decodeResource(getResources(), R.drawable.white);
         }
 
         public SliceImageView(Context context) {

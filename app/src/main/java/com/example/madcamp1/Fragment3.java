@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.madcamp1.one.OneActivity;
 
@@ -33,17 +34,20 @@ public class Fragment3 extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         Button btn = (Button) view.findViewById(R.id.gamebtn);
-        EditText et = (EditText)view.findViewById(R.id.et_num);
-
-        //int num = Integer.parseInt(et.getText().toString());    //정수형 값 가져오기
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(), OneActivity.class);
-                i.putExtra("n_num", Integer.parseInt(et.getText().toString()));
-                startActivity(i);
+
+                try{
+                    EditText et = (EditText)view.findViewById(R.id.et_num);
+                    int num = Integer.parseInt(et.getText().toString());
+                    Intent i = new Intent(getContext(), OneActivity.class);
+                    i.putExtra("n_num", num);
+                    startActivity(i);
+                } catch (NumberFormatException e){
+                    Toast.makeText(getContext(),"정수형으로 입력하세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

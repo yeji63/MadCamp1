@@ -10,9 +10,11 @@
         android:id="@+id/newPhoto"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="84dp"
         android:src="@drawable/addphoto"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,20 +37,21 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="50dp"
         android:text="Phone Number"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/newNumber"
         app:layout_constraintTop_toBottomOf="@+id/newName" />
 
     <EditText
         android:id="@+id/newNumber"
-        android:layout_width="326dp"
+        android:layout_width="300dp"
         android:layout_height="47dp"
-        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="phone"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -56,41 +59,47 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="45dp"
         android:text="Email"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/newEmail"
         app:layout_constraintTop_toBottomOf="@+id/newNumber" />
 
     <EditText
         android:id="@+id/newEmail"
-        android:layout_width="326dp"
+        android:layout_width="300dp"
         android:layout_height="47dp"
-        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
         android:onClick="onSaveButtonClicked"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:onClick="onCancelButtonClicked"
-        android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/button2"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginStart="28dp"-->
+<!--        android:layout_marginLeft="28dp"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        android:onClick="onCancelButtonClicked"-->
+<!--        android:text="Cancel"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

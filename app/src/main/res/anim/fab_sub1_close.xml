@@ -14,5 +14,5 @@
 
     <translate
         android:fromYDelta="0"
-        android:toYDelta="580" />
+        android:toYDelta="370" />
 </set>

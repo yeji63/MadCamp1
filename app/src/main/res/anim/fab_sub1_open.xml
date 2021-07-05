@@ -13,6 +13,6 @@
         android:pivotY="50%" />
 
     <translate
-        android:fromYDelta="580"
+        android:fromYDelta="370"
         android:toYDelta="0" />
 </set>

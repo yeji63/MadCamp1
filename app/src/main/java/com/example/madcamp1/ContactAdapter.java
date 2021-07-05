@@ -2,9 +2,12 @@ package com.example.madcamp1;
 
 import android.content.Context;
 import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +21,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
 
     ContactAdapter(ArrayList<Contact> dataList)
     {
-        this.myDataList = dataList;
+        myDataList = dataList;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         viewHolder.number.setText(myDataList.get(position).getNumber());
         viewHolder.email.setText(myDataList.get(position).getEmail());
     }
-    
+
     @Override
     public int getItemCount()
     {

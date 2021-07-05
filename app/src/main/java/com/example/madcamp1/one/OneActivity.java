@@ -51,6 +51,7 @@ public class OneActivity extends AppCompatActivity {
         // Selected image id
         N = i.getExtras().getInt("n_num");
 
+
         // span과 이미지 갯수만 변경되면 모든 M x N 적용가능
         GridLayoutManager layoutManager = new GridLayoutManager(this, N);
         binding.oneViews.setLayoutManager(layoutManager);
@@ -140,9 +141,7 @@ public class OneActivity extends AppCompatActivity {
                         Animation animation = AnimationUtils.loadAnimation(OneActivity.this, anim);
                         animation.setAnimationListener(new Animation.AnimationListener() {
                             @Override
-                            public void onAnimationStart(Animation animation) {
-
-                            }
+                            public void onAnimationStart(Animation animation) {}
 
                             @Override
                             public void onAnimationEnd(Animation animation) {
@@ -165,14 +164,12 @@ public class OneActivity extends AppCompatActivity {
                                             break;
                                         }
                                     }
-                                    Toast.makeText(OneActivity.this, "참 잘했어요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(OneActivity.this, "퍼즐 완성!.", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
                             @Override
-                            public void onAnimationRepeat(Animation animation) {
-
-                            }
+                            public void onAnimationRepeat(Animation animation) { }
                         });
                         child.startAnimation(animation);
                     }
@@ -223,5 +220,4 @@ public class OneActivity extends AppCompatActivity {
             return bitNXN;
         }
     }
-
 }

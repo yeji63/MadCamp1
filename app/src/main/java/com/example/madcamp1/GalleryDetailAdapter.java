@@ -11,10 +11,6 @@ public class GalleryDetailAdapter extends BaseAdapter {
     private Context imgContext;
     public static Integer[] imglist;
 
-//    public Integer[] imgarray={
-//            R.drawable.daisy1, R.drawable.daisy2, R.drawable.daisy3, R.drawable.daisy4, R.drawable.daisy5
-//    };
-
     public GalleryDetailAdapter(Context c, Integer[] list){
         imgContext=c;
         imglist=list;

@@ -2,6 +2,7 @@ package com.example.madcamp1;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.Toolbar;
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         fragment1 = new Fragment1();
         fragment2 = new Fragment2();
@@ -55,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }) ;
 
-        Toolbar tb = findViewById(R.id.toolbar);
-        tb.setTitleTextColor(0xffffffff);
-        setSupportActionBar(tb);
-        ActionBar ab = getSupportActionBar();
+//        Toolbar tb = findViewById(R.id.toolbar);
+//        tb.setTitleTextColor(0xffffffff);
+//        setSupportActionBar(tb);
+//        ActionBar ab = getSupportActionBar();
 
     }
 }

@@ -23,12 +23,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -36,13 +37,18 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-public class Fragment1 extends Fragment {
+public class Fragment1 extends Fragment implements View.OnClickListener{
     static ArrayList<Contact> dataList;
     static List<Contact> contactList;
     public SwipeRefreshLayout swipeRefreshLayout;
+    private FloatingActionButton fab_main, fab_sub1, fab_sub2;
+    private Animation fab_main_open, fab_main_close, fab_sub1_open, fab_sub1_close, fab_sub2_open, fab_sub2_close;
+    private boolean isFabOpen;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle   savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         View view = inflater.inflate(R.layout.fragment_1, container, false);
         Fragment fragment1 = this;
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -57,7 +63,24 @@ public class Fragment1 extends Fragment {
             }
         });
 
-        setHasOptionsMenu(true);
+        isFabOpen = false;
+        fab_sub1_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_sub1_open);
+        fab_sub1_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_sub1_close);
+        fab_sub2_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_sub2_open);
+        fab_sub2_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_sub2_close);
+        fab_main_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_main_open);
+        fab_main_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_main_close);
+
+        fab_main = (FloatingActionButton) view.findViewById(R.id.fab_main);
+        fab_sub1 = (FloatingActionButton) view.findViewById(R.id.fab_sub1);
+        fab_sub2 = (FloatingActionButton) view.findViewById(R.id.fab_sub2);
+
+        fab_main.setOnClickListener(this);
+        fab_sub1.setOnClickListener(this);
+        fab_sub2.setOnClickListener(this);
+
+
+//        setHasOptionsMenu(true);
 //        jsonParsing(getJsonString());
         dataList = getContactList();
         contactList = (List<Contact>) dataList.clone();
@@ -70,26 +93,46 @@ public class Fragment1 extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.contact_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.search_contact:
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab_main:
+                toggleFab();
+                break;
+            case R.id.fab_sub1:
+                toggleFab();
                 Intent intent_search = new Intent(getActivity().getApplicationContext(), SearchContact.class);
                 startActivity(intent_search);
-                return true;
-            case R.id.add_contact:
+                break;
+
+            case R.id.fab_sub2:
+                toggleFab();
                 Intent intent_add = new Intent(getActivity().getApplicationContext(), AddContact.class);
                 startActivity(intent_add);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+                break;
         }
     }
+
+    private void toggleFab() {
+        if (isFabOpen) {
+//            fab_main.setImageResource(R.drawable.ic_more);
+            fab_main.startAnimation(fab_main_close);
+            fab_sub1.startAnimation(fab_sub1_close);
+            fab_sub2.startAnimation(fab_sub2_close);
+            fab_sub1.setClickable(false);
+            fab_sub2.setClickable(false);
+            isFabOpen = false;
+        } else {
+//            fab_main.setImageResource(R.drawable.ic_more);
+            fab_main.startAnimation(fab_main_open);
+            fab_sub1.startAnimation(fab_sub1_open);
+            fab_sub2.startAnimation(fab_sub2_open);
+            fab_sub1.setClickable(true);
+            fab_sub2.setClickable(true);
+            isFabOpen = true;
+        }
+    }
+
 
     private Drawable openPhoto(long contactId) {
         Uri contactUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI,

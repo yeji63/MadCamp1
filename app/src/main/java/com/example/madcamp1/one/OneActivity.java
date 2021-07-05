@@ -129,49 +129,52 @@ public class OneActivity extends AppCompatActivity {
             int action = evt.getAction();
             if (action == MotionEvent.ACTION_UP) {
                 View child = parent.findChildViewUnder(evt.getX(), evt.getY());
-                assert child != null;
-                int pos = parent.getChildAdapterPosition(child);
-                Log.e("pos", String.valueOf(pos));
-                if (pos != -1) {
-                    int[] result = checkAvailable.check(pos);
-                    int newPos = result[0];
-                    int anim = getAnim(result[1]);
-                    Log.e("new pos = " + newPos, "anim = " + result[1]);
-                    if (newPos != 100) {
-                        Animation animation = AnimationUtils.loadAnimation(OneActivity.this, anim);
-                        animation.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {}
-
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                Vector<One> one = adapter.change(pos, newPos);
-                                int good_job = 0;
-                                for (int i = 0; i < mOne.size(); i++) {
-                                    if (i == mOne.get(i).getTag()) {
-                                        good_job++;
-                                    }
+                if(child != null) {
+                    int pos = parent.getChildAdapterPosition(child);
+                    Log.e("pos", String.valueOf(pos));
+                    if (pos != -1) {
+                        int[] result = checkAvailable.check(pos);
+                        int newPos = result[0];
+                        int anim = getAnim(result[1]);
+                        Log.e("new pos = " + newPos, "anim = " + result[1]);
+                        if (newPos != 100) {
+                            Animation animation = AnimationUtils.loadAnimation(OneActivity.this, anim);
+                            animation.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
                                 }
-                                Log.e("current good job", String.valueOf(good_job));
-                                if (good_job == mOne.size()) {
-                                    binding.showCorrectImageView.setVisibility(View.VISIBLE);
-                                    binding.showCorrectImageView.setImageResource(R.drawable.ggg);
-                                    for (int i = 0; i < one.size(); i++) {
-                                        boolean empty = one.get(i).isEmpty();
-                                        if (empty) {
-                                            adapter.finish(i);
-                                            binding.oneViews.removeOnItemTouchListener(itemTouchListener);
-                                            break;
+
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    Vector<One> one = adapter.change(pos, newPos);
+                                    int good_job = 0;
+                                    for (int i = 0; i < mOne.size(); i++) {
+                                        if (i == mOne.get(i).getTag()) {
+                                            good_job++;
                                         }
                                     }
-                                    Toast.makeText(OneActivity.this, "퍼즐 완성!.", Toast.LENGTH_SHORT).show();
+                                    Log.e("current good job", String.valueOf(good_job));
+                                    if (good_job == mOne.size()) {
+                                        binding.showCorrectImageView.setVisibility(View.VISIBLE);
+                                        binding.showCorrectImageView.setImageResource(R.drawable.ggg);
+                                        for (int i = 0; i < one.size(); i++) {
+                                            boolean empty = one.get(i).isEmpty();
+                                            if (empty) {
+                                                adapter.finish(i);
+                                                binding.oneViews.removeOnItemTouchListener(itemTouchListener);
+                                                break;
+                                            }
+                                        }
+                                        Toast.makeText(OneActivity.this, "퍼즐 완성!.", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onAnimationRepeat(Animation animation) { }
-                        });
-                        child.startAnimation(animation);
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+                                }
+                            });
+                            child.startAnimation(animation);
+                        }
                     }
                 }
             }

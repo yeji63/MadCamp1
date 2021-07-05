@@ -10,7 +10,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/add_contact"
-        android:icon="@drawable/add"
+        android:icon="@drawable/ic_add"
         android:title="Add contact"
         app:showAsAction="always" />
 

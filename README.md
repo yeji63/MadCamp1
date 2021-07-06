@@ -10,13 +10,13 @@
 >Android Studio 4.1.1
 
 ### apk file
->[download](링크주소넣기)
+>[download](https://drive.google.com/file/d/15ksusQVRUBuGfgAji2EnQb8oKBS6zjnh/view?usp=sharing)
 
 ---
 ## 프로젝트 설명
 ### APP LOGO
 <img src = "https://user-images.githubusercontent.com/77380770/124590348-fcefcf00-de95-11eb-85ae-f21a8596f546.png" width="200" height="200">
-
+>앱 시작 화면으로 설정.
 
 ### TAB 1 - CONTACT
 <img src = "https://user-images.githubusercontent.com/77380770/124599686-e69b4080-dea0-11eb-89d5-3e645cd7b6b2.gif" width="200">  <img src = "https://user-images.githubusercontent.com/77380770/124593332-776e1e00-de99-11eb-867a-70444a632479.gif" width="200">

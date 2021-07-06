@@ -124,6 +124,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         if (requestCode == 2){
             if(data != null){
                 selectimg= data.getIntExtra("selectimg", 0);
+                bitmap = null;
                 //String name = data.getStringExtra("name");
                 gameimg.setImageResource(selectimg);
             }
@@ -137,6 +138,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                         File file = new File(mCurrentPhotoPath);
                         bitmap = MediaStore.Images.Media
                                 .getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
+                        selectimg = 0;
                         if (bitmap != null) {
                             gameimg.setImageBitmap(bitmap);
                             //여기서 array에 추가?

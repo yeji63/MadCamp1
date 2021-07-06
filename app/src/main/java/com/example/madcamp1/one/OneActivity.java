@@ -218,7 +218,7 @@ public class OneActivity extends AppCompatActivity {
                 binding.correctImageView.setImageResource(imgres);
                 img = BitmapFactory.decodeResource(getResources(), imgres);
             } else if(imgres==0){
-                binding.correctImageView.setImageBitmap(img);
+                binding.correctImageView.setImageBitmap(imgbtm);
                 img = imgbtm;
             }
             img = Bitmap.createScaledBitmap(img, width, height, true);

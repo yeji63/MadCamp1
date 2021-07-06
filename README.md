@@ -17,6 +17,10 @@
 
 
 ### TAB 1 - CONTACT
+<img src = "https://user-images.githubusercontent.com/77380770/124592757-c4052980-de98-11eb-859a-d4c448415847.gif" width="200">
+
+<img src = "" width="200">
+
 - 설명
 >연락처의 사진, 이름, 번호, 메일을 보여준다.
 > 

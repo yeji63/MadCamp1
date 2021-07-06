@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MotionEventCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -133,6 +134,18 @@ public class OneActivity extends AppCompatActivity {
         @Override
         public boolean onInterceptTouchEvent(@NonNull RecyclerView parent, @NonNull MotionEvent evt) {
             int action = evt.getAction();
+            if (action == MotionEvent.ACTION_MOVE) {
+                View child = parent.findChildViewUnder(evt.getX(), evt.getY());
+                if(child != null) {
+                    int pos = parent.getChildAdapterPosition(child);
+                    Log.e("pos", String.valueOf(pos));
+                    if (pos != -1) {
+                        int[] result = checkAvailable.check(pos);
+                        int newPos = result[0];
+                        Log.e("new pos = " + newPos, "anim = " + result[1]);
+                    }
+                }
+            }
             if (action == MotionEvent.ACTION_UP) {
                 View child = parent.findChildViewUnder(evt.getX(), evt.getY());
                 if(child != null) {

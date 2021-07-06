@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.util.Log;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     Fragment fragment1, fragment2, fragment3;
     @Override
@@ -27,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().add(R.id.frame, fragment1).commit();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -70,11 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 // do nothing
             }
         }) ;
-
-//        Toolbar tb = findViewById(R.id.toolbar);
-//        tb.setTitleTextColor(0xffffffff);
-//        setSupportActionBar(tb);
-//        ActionBar ab = getSupportActionBar();
 
     }
 }

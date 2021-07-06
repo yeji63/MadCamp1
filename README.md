@@ -4,6 +4,9 @@
 ## 프로젝트 이름 생각하기
 탭 3개의 안드로이드 앱
 
+### Development Environment
+Android Studio 4.1.1
+
 ### TAB 1
 - RecyclerView로 연락처 구현 
 - 핸드폰 연락처와 연동

@@ -4,13 +4,81 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        android:id="@+id/oldPhoto"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_marginTop="144dp"-->
+<!--        android:src="@drawable/addphoto"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/oldName"-->
+<!--        android:layout_width="158dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:hint="Name"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:textSize="24sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.496"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/oldPhoto" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="44dp"-->
+<!--        android:text="Phone Number"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/oldNumber"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/oldName" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/oldNumber"-->
+<!--        android:layout_width="326dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="phone"-->
+<!--        android:textSize="24sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="44dp"-->
+<!--        android:text="Email"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/oldEmail"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/oldNumber" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/oldEmail"-->
+<!--        android:layout_width="326dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:textSize="24sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView2" />-->
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/oldPhoto"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="84dp"
         android:src="@drawable/addphoto"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,41 +101,45 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="50dp"
         android:text="Phone Number"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/oldNumber"
         app:layout_constraintTop_toBottomOf="@+id/oldName" />
 
     <TextView
         android:id="@+id/oldNumber"
-        android:layout_width="326dp"
+        android:layout_width="300dp"
         android:layout_height="47dp"
-        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="phone"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="45dp"
         android:text="Email"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/oldEmail"
         app:layout_constraintTop_toBottomOf="@+id/oldNumber" />
 
     <TextView
         android:id="@+id/oldEmail"
-        android:layout_width="326dp"
+        android:layout_width="300dp"
         android:layout_height="47dp"
-        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

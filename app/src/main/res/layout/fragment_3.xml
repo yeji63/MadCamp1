@@ -47,6 +47,12 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사진찍기"
+            tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/et_num"

@@ -35,6 +35,7 @@ public class OneActivity extends AppCompatActivity {
 
     private static int N;
     int imgres;
+    Bitmap imgbtm;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -51,8 +52,10 @@ public class OneActivity extends AppCompatActivity {
         Intent i = getIntent();
         // Selected image id
         N = i.getExtras().getInt("n_num");
-        //img 인수로 받기
+        //img int로 받기
         imgres = i.getExtras().getInt("imgres");
+        //카메라 찍은거 받기
+        imgbtm = i.getParcelableExtra("imgbtm");
 
 
         // span과 이미지 갯수만 변경되면 모든 M x N 적용가능
@@ -159,7 +162,12 @@ public class OneActivity extends AppCompatActivity {
                                     Log.e("current good job", String.valueOf(good_job));
                                     if (good_job == mOne.size()) {
                                         binding.showCorrectImageView.setVisibility(View.VISIBLE);
-                                        binding.showCorrectImageView.setImageResource(R.drawable.ggg);
+                                        if(imgbtm==null){
+                                            binding.showCorrectImageView.setImageResource(imgres);
+                                        } else if(imgres==0){
+                                           binding.showCorrectImageView.setImageBitmap(imgbtm);
+                                        }
+
                                         for (int i = 0; i < one.size(); i++) {
                                             boolean empty = one.get(i).isEmpty();
                                             if (empty) {
@@ -206,8 +214,13 @@ public class OneActivity extends AppCompatActivity {
         public void setWH(int width, int height) {
             this.width = width;
             this.height = height;
-            binding.correctImageView.setImageResource(imgres);
-            img = BitmapFactory.decodeResource(getResources(), imgres);
+            if(imgbtm==null){
+                binding.correctImageView.setImageResource(imgres);
+                img = BitmapFactory.decodeResource(getResources(), imgres);
+            } else if(imgres==0){
+                binding.correctImageView.setImageBitmap(img);
+                img = imgbtm;
+            }
             img = Bitmap.createScaledBitmap(img, width, height, true);
             imgW = img.getWidth() / N;
             imgH = img.getHeight() / N;

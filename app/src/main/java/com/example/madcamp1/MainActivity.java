@@ -36,12 +36,15 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selected=null;
                 if(pos==0){
                     selected = fragment1;
+                    tab.setIcon(R.drawable.icon_contact_selected);
                 }
                 else if(pos==1){
                     selected = fragment2;
+                    tab.setIcon(R.drawable.icon_gallery_selected);
                 }
                 else if(pos==2){
                     selected = fragment3;
+                    tab.setIcon(R.drawable.icon_puzzle_selected);
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();
             }
@@ -49,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 // do nothing
+                int pos = tab.getPosition();
+                if(pos==0){
+                    tab.setIcon(R.drawable.icon_contact);
+                }
+                else if(pos==1){
+                    tab.setIcon(R.drawable.icon_gallery);
+                }
+                else if(pos==2){
+                    tab.setIcon(R.drawable.icon_puzzle);
+                }
             }
 
             @Override

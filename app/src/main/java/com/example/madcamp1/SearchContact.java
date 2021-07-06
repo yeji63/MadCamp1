@@ -8,12 +8,12 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.madcamp1.Fragment1.contactList;
 import static com.example.madcamp1.Fragment1.dataList;
 
 public class SearchContact extends AppCompatActivity {
@@ -30,8 +30,12 @@ public class SearchContact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_contact);
         ButterKnife.bind(this, this);
-        adapter = new ContactFilterAdapter(dataList, contactList);
+        adapter = new ContactFilterAdapter();
         recyclerView2.setAdapter(adapter);
+
+        findViewById(R.id.frameLayout).bringToFront();
+        findViewById(R.id.imageView).bringToFront();
+        findViewById(R.id.editTextTextPersonName).bringToFront();
 
         //검색창
         editsearch.addTextChangedListener(new TextWatcher() {

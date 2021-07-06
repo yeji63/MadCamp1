@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,7 +40,6 @@ import java.util.List;
 
 public class Fragment1 extends Fragment implements View.OnClickListener{
     static ArrayList<Contact> dataList;
-    static List<Contact> contactList;
     public SwipeRefreshLayout swipeRefreshLayout;
     private FloatingActionButton fab_main, fab_sub1, fab_sub2;
     private Animation fab_main_open, fab_main_close, fab_sub1_open, fab_sub1_close, fab_sub2_open, fab_sub2_close;
@@ -50,6 +50,10 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_1, container, false);
+        view.findViewById(R.id.swiperefreshlayout).bringToFront();
+        view.findViewById(R.id.fab_sub2).bringToFront();
+        view.findViewById(R.id.fab_sub1).bringToFront();
+        view.findViewById(R.id.fab_main).bringToFront();
         Fragment fragment1 = this;
         FragmentTransaction ft = getFragmentManager().beginTransaction();
 
@@ -83,7 +87,6 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
 //        setHasOptionsMenu(true);
 //        jsonParsing(getJsonString());
         dataList = getContactList();
-        contactList = (List<Contact>) dataList.clone();
 //        InitializeData();
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);

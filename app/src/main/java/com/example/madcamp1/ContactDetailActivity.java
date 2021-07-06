@@ -21,10 +21,12 @@ public class ContactDetailActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         int pos = i.getExtras().getInt("contactpos");
+        int type = i.getExtras().getInt("type");
 
-        photo.setImageDrawable(ContactAdapter.myDataList.get(pos).getImage());
-        name.setText(ContactAdapter.myDataList.get(pos).getName());
-        number.setText(ContactAdapter.myDataList.get(pos).getNumber());
-        email.setText(ContactAdapter.myDataList.get(pos).getEmail());
+        Contact contact = type == 1? ContactAdapter.myDataList.get(pos) : ContactFilterAdapter.contactList.get(pos);
+        photo.setImageDrawable(contact.getImage());
+        name.setText(contact.getName());
+        number.setText(contact.getNumber());
+        email.setText(contact.getEmail());
     }
 }

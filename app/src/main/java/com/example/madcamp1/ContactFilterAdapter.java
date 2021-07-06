@@ -12,15 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.madcamp1.Fragment1.dataList;
+
 public class ContactFilterAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
     private ArrayList<Contact> myDataList;
-    private List<Contact> contactList;
+    static List<Contact> contactList;
 
-    ContactFilterAdapter(ArrayList<Contact> dataList, List<Contact> contactList)
+    ContactFilterAdapter()
     {
         this.myDataList = dataList;
-        this.contactList = contactList;
+        this.contactList = (List<Contact>) dataList.clone();
     }
 
     @Override
@@ -31,7 +33,7 @@ public class ContactFilterAdapter extends RecyclerView.Adapter<ContactAdapter.Vi
 
         //전개자(Inflater)를 통해 얻은 참조 객체를 통해 뷰홀더 객체 생성
         View view = inflater.inflate(R.layout.contact_recyclerview, parent, false);
-        ContactAdapter.ViewHolder viewHolder= new ContactAdapter.ViewHolder(view);
+        ContactAdapter.ViewHolder viewHolder= new ContactAdapter.ViewHolder(view, 2);
 
         return viewHolder;
     }

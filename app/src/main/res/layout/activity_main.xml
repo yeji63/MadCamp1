@@ -36,7 +36,7 @@
             android:id="@+id/tab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/icon_puzzle"/>
+            android:icon="@drawable/icon_puzzle" />
     </com.google.android.material.tabs.TabLayout>
 
 </RelativeLayout>

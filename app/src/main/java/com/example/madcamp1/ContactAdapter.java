@@ -28,7 +28,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
         //전개자(Inflater)를 통해 얻은 참조 객체를 통해 뷰홀더 객체 생성
         View view = inflater.inflate(R.layout.contact_recyclerview, parent, false);
-        ContactAdapter.ViewHolder vh = new ContactAdapter.ViewHolder(view);
+        ContactAdapter.ViewHolder vh = new ContactAdapter.ViewHolder(view, 1);
         return vh;
     }
 
@@ -57,7 +57,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         TextView number;
         TextView email;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, int j) {
             super(itemView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,9 +65,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION){
-                        Contact item = myDataList.get(pos);
+//                        Contact item = myDataList.get(pos);
                         Intent i = new Intent(v.getContext(), ContactDetailActivity.class);
                         i.putExtra("contactpos", pos);
+                        i.putExtra("type", j);
                         v.getContext().startActivity(i);
                     }
                 }

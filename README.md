@@ -43,6 +43,8 @@
 
 
 ### TAB 2 - GALLERY
+<img src = "https://user-images.githubusercontent.com/77380770/124611062-0edc6c80-deac-11eb-974e-84289549f51e.gif" width="200">   <img src = "https://user-images.githubusercontent.com/77380770/124610997-fcfac980-deab-11eb-8200-a6673cd8c1e6.gif" width="200">
+
 - 설명
 >총 5종류의 꽃 사진이 있는 갤러리다.
 >

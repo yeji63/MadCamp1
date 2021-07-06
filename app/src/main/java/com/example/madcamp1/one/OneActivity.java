@@ -178,7 +178,7 @@ public class OneActivity extends AppCompatActivity {
                                         if(imgbtm==null){
                                             binding.showCorrectImageView.setImageResource(imgres);
                                         } else if(imgres==0){
-                                           binding.showCorrectImageView.setImageBitmap(imgbtm);
+                                            binding.showCorrectImageView.setImageBitmap(imgbtm);
                                         }
 
                                         for (int i = 0; i < one.size(); i++) {

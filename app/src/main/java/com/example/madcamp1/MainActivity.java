@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment1, fragment2, fragment3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_MadCamp1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

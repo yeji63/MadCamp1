@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Build;
@@ -25,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.madcamp1.one.OneActivity;
@@ -43,10 +46,12 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
     ImageView gameimg;
     int selectimg;
     Bitmap bitmap;
+    TextView gallery;
+    Bitmap rotatedBitmap;
 
     //CAMERAAAAAAAAAAAA
     //final String TAG = getClass().getSimpleName();
-    Button camera;
+    TextView camera;
     final static int TAKE_PICTURE = 1;
 
     String mCurrentPhotoPath;
@@ -62,7 +67,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         super.onCreateView(inflater, container, savedInstanceState);
 
         //CAMERAA
-        camera = (Button) view.findViewById(R.id.camera);
+        camera = (TextView) view.findViewById(R.id.camera);
         // 카메라 버튼에 리스너 추가
         camera.setOnClickListener(this);
         // 6.0 마쉬멜로우 이상일 경우에는 권한 체크 후 권한 요청
@@ -77,9 +82,10 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         //CAMEREE
         Button btn = (Button) view.findViewById(R.id.gamebtn);
         gameimg = (ImageView) view.findViewById(R.id.gameimg);
+        gallery = (TextView) view.findViewById(R.id.gallery);
         gameimg.setImageResource(R.drawable.ggg);
 
-        gameimg.setOnClickListener(new View.OnClickListener() {
+        gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), GalleryDetailActivity.class);
@@ -96,15 +102,15 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                     Intent i = new Intent(getContext(), OneActivity.class);
                     i.putExtra("n_num", num);
 
-                    if(selectimg==0 && bitmap==null){
+                    if(selectimg==0 && rotatedBitmap==null){
                         i.putExtra("imgres", R.drawable.ggg);
                         Toast.makeText(getContext(),"기본 이미지로 설정됩니다.", Toast.LENGTH_LONG).show();
-                    }else if (bitmap == null){
+                    }else if (rotatedBitmap == null){
                         i.putExtra("imgres", selectimg);
                     } else if (selectimg==0){
                         //bitmap을 resize
-                        bitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
-                        i.putExtra("imgbtm", bitmap);
+                        rotatedBitmap = Bitmap.createScaledBitmap(rotatedBitmap, 300, 300, true);
+                        i.putExtra("imgbtm", rotatedBitmap);
                     }
                     startActivity(i);
                 } catch (NumberFormatException e){
@@ -124,7 +130,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         if (requestCode == 2){
             if(data != null){
                 selectimg= data.getIntExtra("selectimg", 0);
-                bitmap = null;
+                rotatedBitmap = null;
                 //String name = data.getStringExtra("name");
                 gameimg.setImageResource(selectimg);
             }
@@ -140,7 +146,30 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                                 .getBitmap(getActivity().getContentResolver(), Uri.fromFile(file));
                         selectimg = 0;
                         if (bitmap != null) {
-                            gameimg.setImageBitmap(bitmap);
+                            ExifInterface ei = new ExifInterface(mCurrentPhotoPath);
+                            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                                    ExifInterface.ORIENTATION_UNDEFINED);
+
+                            rotatedBitmap = null;
+                            switch(orientation) {
+
+                                case ExifInterface.ORIENTATION_ROTATE_90:
+                                    rotatedBitmap = rotateImage(bitmap, 90);
+                                    break;
+
+                                case ExifInterface.ORIENTATION_ROTATE_180:
+                                    rotatedBitmap = rotateImage(bitmap, 180);
+                                    break;
+
+                                case ExifInterface.ORIENTATION_ROTATE_270:
+                                    rotatedBitmap = rotateImage(bitmap, 270);
+                                    break;
+
+                                case ExifInterface.ORIENTATION_NORMAL:
+                                default:
+                                    rotatedBitmap = bitmap;
+                            }
+                            gameimg.setImageBitmap(rotatedBitmap);
                             //여기서 array에 추가?
 //                            Intent i = new Intent(getContext(), OneActivity.class);
 //                            i.putExtra("imgbtm", bitmap);
@@ -209,6 +238,13 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
     }
 
 }

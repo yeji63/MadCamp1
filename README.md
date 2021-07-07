@@ -9,9 +9,6 @@
 ### Development Environment
 >Android Studio 4.1.1
 
-### apk file
->[download](https://drive.google.com/file/d/1aSmLV3DhZ1tLhgQlvgIKjegxqUNE_yeB/view?usp=sharing)
-
 ---
 ## 프로젝트 설명
 ### APP LOGO
